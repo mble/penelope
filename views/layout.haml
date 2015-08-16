@@ -93,8 +93,6 @@
       });
       $(function() {
         $('#showstats').click(function(event) {
-          event.preventDefault();
-          $(this).toggleClass('active')
           $('#stats').slideToggle({
             easing: 'swing',
             duration: 600
@@ -180,7 +178,9 @@
           Features
           .ui.green.label
             2
-        %a.showstats.item{ id: 'showstats' }
-          Stats
+        .item
+          .ui.toggle.checkbox
+            %input{ type: 'checkbox', id: 'showstats' }
+            %label Stats
     = content
 
