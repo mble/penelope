@@ -1,0 +1,10 @@
+source 'https://rubygems.org'
+
+gem 'cuba', '~> 3.4.0'
+gem 'tilt', '~> 2.0.1'
+gem 'rspec', '~> 3.3.0'
+gem 'octokit', '~> 4.0.1'
+gem 'haml', '~> 4.0.7'
+gem 'rack-protection', '~> 1.5.3'
+gem 'rack-test', '~> 0.6.3'
+gem 'puma', '~> 2.12.3'

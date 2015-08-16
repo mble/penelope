@@ -1,0 +1,176 @@
+!!!
+%html{lang: 'en'}
+  %head
+    %meta{ charset: 'utf-8' }
+    %meta{ 'http-equiv': 'X-UA-Compatible', content: 'IE=edge,chrome=1' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    %title Test
+    %link{ rel: 'stylesheet', type: 'text/css', href: '//oss.maxcdn.com/semantic-ui/2.0.8/semantic.min.css' }
+    %script{ src: 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js' }
+    %script{ src: '//oss.maxcdn.com/semantic-ui/2.0.8/semantic.min.js' }
+    %script{ src: 'http://code.highcharts.com/highcharts.js' }
+    :css
+      .main.container {
+        border: 1px transparent solid;
+      }
+      .topspacer.container {
+        margin-top: 6em;
+      }
+      .interspacer.container {
+        margin-top: 1em;
+      }
+      .ui.accordion {
+        width: 100%;
+      }
+      .ui.issue {
+        min-height: 165px;
+      }
+      span.number {
+        float: right;
+      }
+      .ui.segment.title {
+        margin: 0 0 1.5rem 0;
+      }
+      .ui.segment.stats {
+        max-height: 335px;
+      }
+      .labels {
+        float: right;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 10px;
+      }
+      #turnaroundchart {
+        max-width: 80%;
+      }
+      .redcircle {
+        border-radius: 50%;
+        height: 75px;
+        width: 75px;
+        background: #db2828;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items :center;
+        color: white;
+      }
+      .ambercircle {
+        border-radius: 50%;
+        height: 75px;
+        width: 75px;
+        background: #f26202;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items :center;
+        color: white;
+      }
+      .greencircle {
+        border-radius: 50%;
+        height: 75px;
+        width: 75px;
+        background: #21ba45;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items :center;
+        color: white;
+      }
+      .container.hidden {
+        display: none;
+      }
+    :javascript
+      $(function() {
+        $('#showstats').click(function(event) {
+          event.preventDefault();
+          $(this).toggleClass('active')
+          $('#stats').slideToggle({
+            easing: 'swing',
+            duration: 600
+          });
+        });
+      });
+      $(function() {
+        $('.ui.accordion').accordion();
+      });
+      $(function () {
+        $('#turnaroundchart').highcharts({
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie',
+            margin: [0, 0, 0, 0],
+            spacingTop: 0,
+            spacingBottom: 0,
+            spacingLeft: 0,
+            spacingRight: 0,
+            width: 300,
+            height: 280
+          },
+          title: {
+            text: ''
+          },
+          tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+          },
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              center: ['50%', '50%'],
+              size: '80%',
+              dataLabels: {
+                enabled: true,
+                format: '<b>{point.percentage:.1f} %',
+                distance: -30,
+                style: {
+                  color: 'white',
+                  textShadow: '',
+                  fontweight: 'bold'
+                }
+              }
+            }
+          },
+          series: [{
+            name: "% of bugs",
+            colorByPoint: true,
+            data: [{
+                  name: "In SLA",
+                  color: '#21ba45',
+                  y: 70
+                }, {
+                  name: "Out of SLA",
+                  color: '#f26202',
+                  y: 20
+                }, {
+                  name: "Red SLA",
+                  color: '#db2828',
+                  y: 10
+                }]
+              }]
+            });
+          });
+  %body
+    .ui.fixed.menu
+      .ui.container
+        .header.item
+          %img.ui.avatar.image{ src: 'https://metrouk2.files.wordpress.com/2013/02/ip1705387lady-penelope-from.jpg?w=650&h=616&crop=1' }
+          Penelope
+        %a.item{ href: '#' }
+          Critical Bugs
+          .ui.label.orange
+            9
+        %a.item{ href: '#' }
+          Chores
+          .ui.label.red
+            12
+        %a.item{ href: '#' }
+          Features
+          .ui.green.label
+            2
+        %a.showstats.item{ id: 'showstats' }
+          Stats
+    = content
+
