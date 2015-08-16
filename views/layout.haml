@@ -84,11 +84,26 @@
       .labels > .label {
         margin-top: 5px;
       }
+      .pagecontent {
+        display: none;
+      }
     :javascript
       $(function() {
         $('body').flowtype({
           minFont: 12,
           maxFont: 14,
+        });
+      });
+      $(function() {
+        $('.pagecontent').dimmer('create');
+        $('.dimmer').addClass('inverted');
+        $('.dimmer').html('<div class="ui text loader">Loading</div>');
+        $('.pagecontent').dimmer('show');
+        $(window).load(function() {
+          $('.pagecontent').fadeIn( {
+            duration: 600,
+            complete:  $('.pagecontent').dimmer('hide')
+          });
         });
       });
       $(function() {
