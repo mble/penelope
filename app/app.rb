@@ -10,13 +10,7 @@ Cuba.settings[:render][:template_engine] = "haml"
 Cuba.define do
   on get do
     on root do
-      res.redirect "/hello"
-    end
-
-    on 'hello' do
-      on root do
-        render 'hello'
-      end
+      render 'hello'
     end
   end
 end

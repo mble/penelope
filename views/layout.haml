@@ -10,186 +10,23 @@
     %script{ src: '//oss.maxcdn.com/semantic-ui/2.0.8/semantic.min.js' }
     %script{ src: 'http://code.highcharts.com/highcharts.js' }
     %script{ src: '//cdn.jsdelivr.net/flowtype.js/1.1/flowtype.min.js' }
-    :css
-      .main.container {
-        border: 1px transparent solid;
-      }
-      .topspacer.container {
-        margin-top: 6em;
-      }
-      .interspacer.container {
-        margin-top: 1em;
-      }
-      .ui.accordion {
-        width: 100%;
-      }
-      .ui.issue {
-        min-height: 165px;
-      }
-      span.number {
-        float: right;
-      }
-      .ui.segment.title {
-        margin: 0 0 1.5rem 0;
-      }
-      .ui.segment.stats {
-        max-height: 335px;
-      }
-      .labels {
-        float: right;
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        padding: 10px;
-      }
-      #turnaroundchart {
-        max-width: 80%;
-      }
-      .redcircle {
-        border-radius: 50%;
-        height: 75px;
-        width: 75px;
-        background: #db2828;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items :center;
-        color: white;
-      }
-      .ambercircle {
-        border-radius: 50%;
-        height: 75px;
-        width: 75px;
-        background: #f26202;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items :center;
-        color: white;
-      }
-      .greencircle {
-        border-radius: 50%;
-        height: 75px;
-        width: 75px;
-        background: #21ba45;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items :center;
-        color: white;
-      }
-      .container.hidden {
-        display: none;
-      }
-      .labels > .label {
-        margin-top: 5px;
-      }
-      .pagecontent {
-        display: none;
-      }
-    :javascript
-      $(function() {
-        $('body').flowtype({
-          minFont: 12,
-          maxFont: 14,
-        });
-      });
-      $(function() {
-        $('.pagecontent').dimmer('create');
-        $('.dimmer').addClass('inverted');
-        $('.dimmer').html('<div class="ui text loader">Loading</div>');
-        $('.pagecontent').dimmer('show');
-        $(window).load(function() {
-          $('.pagecontent').fadeIn( {
-            duration: 600,
-            complete:  $('.pagecontent').dimmer('hide')
-          });
-        });
-      });
-      $(function() {
-        $('#showstats').click(function(event) {
-          $('#stats').slideToggle({
-            easing: 'swing',
-            duration: 600
-          });
-        });
-      });
-      $(function() {
-        $('.ui.accordion').accordion();
-      });
-      $(function () {
-        $('#turnaroundchart').highcharts({
-          chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie',
-            margin: [0, 0, 0, 0],
-            spacingTop: 0,
-            spacingBottom: 0,
-            spacingLeft: 0,
-            spacingRight: 0,
-            width: 300,
-            height: 280
-          },
-          title: {
-            text: ''
-          },
-          tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-          },
-          plotOptions: {
-            pie: {
-              allowPointSelect: true,
-              cursor: 'pointer',
-              center: ['50%', '50%'],
-              size: '80%',
-              dataLabels: {
-                enabled: true,
-                format: '<b>{point.percentage:.1f} %',
-                distance: -30,
-                style: {
-                  color: 'white',
-                  textShadow: '',
-                  fontweight: 'bold'
-                }
-              }
-            }
-          },
-          series: [{
-            name: "% of bugs",
-            colorByPoint: true,
-            data: [{
-                  name: "In SLA",
-                  color: '#21ba45',
-                  y: 70
-                }, {
-                  name: "Out of SLA",
-                  color: '#f26202',
-                  y: 20
-                }, {
-                  name: "Red SLA",
-                  color: '#db2828',
-                  y: 10
-                }]
-              }]
-            });
-          });
+    %script{ src: 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js' }
+    = partial 'hacks'
   %body
     .ui.fixed.menu
       .ui.container
         .header.item
           %img.ui.avatar.image{ src: 'https://metrouk2.files.wordpress.com/2013/02/ip1705387lady-penelope-from.jpg?w=650&h=616&crop=1' }
           Penelope
-        %a.item{ href: '#' }
+        %a#bugs.item
           Critical Bugs
           .ui.label.orange
             9
-        %a.item{ href: '#' }
+        %a#chores.item
           Chores
           .ui.label.red
             12
-        %a.item{ href: '#' }
+        %a#features.item
           Features
           .ui.green.label
             2

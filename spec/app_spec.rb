@@ -12,7 +12,6 @@ end
 describe 'GET /' do
   it 'returns 200 response' do
     get '/'
-    follow_redirect!
     expect(last_response.status).to eql 200
   end
 end

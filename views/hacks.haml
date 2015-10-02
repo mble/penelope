@@ -1,0 +1,191 @@
+:css
+  .main.container {
+    border: 1px transparent solid;
+  }
+  .topspacer.container {
+    margin-top: 6em;
+  }
+  .interspacer.container {
+    margin-top: 1em;
+  }
+  .ui.accordion {
+    width: 100%;
+  }
+  .ui.issue {
+    min-height: 165px;
+  }
+  .number.label {
+    float: right;
+  }
+  .meta.right {
+    clear: both;
+    float: right;
+  }
+  .ui.segment.title {
+    margin: 0 0 1.5rem 0;
+  }
+  .ui.segment.stats {
+    max-height: 335px;
+  }
+  .labels {
+    padding: 10px;
+  }
+  #turnaroundchart {
+    max-width: 80%;
+  }
+  .redcircle {
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+    background: #db2828;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items :center;
+    color: white;
+  }
+  .ambercircle {
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+    background: #f26202;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items :center;
+    color: white;
+  }
+  .greencircle {
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+    background: #21ba45;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items :center;
+    color: white;
+  }
+  .container.hidden {
+    display: none;
+  }
+  .labels > .label {
+    margin-top: 5px;
+  }
+  .labels > .horizontal.label {
+    margin-top: 5px;
+  }
+  #bugscontent {
+    border: 1px transparent solid;
+  }
+  #chorescontent {
+    display: none;
+    border: 1px transparent solid;
+  }
+:javascript
+  $(function() {
+    $('body').flowtype({
+      minFont: 12,
+      maxFont: 14,
+    });
+  });
+
+  $(function() {
+    $('.pagecontent').dimmer('create');
+    $('.dimmer').addClass('inverted');
+    $('.dimmer').html('<div class="ui text loader">Loading</div>');
+    $('.pagecontent').dimmer('show');
+    $(window).load(function() {
+      $('.pagecontent').fadeIn( {
+        duration: 600,
+        complete:  $('.pagecontent').dimmer('hide')
+      });
+    });
+  });
+
+  $(function() {
+    $('#showstats').click(function(event) {
+      $('#stats').slideToggle({
+        easing: 'swing',
+        duration: 600
+      });
+    });
+  });
+
+  $(function() {
+    $('#chores').click(function(event) {
+      $(this).addClass('active');
+      $('#bugscontent').toggle('slide', {
+        direction: 'left'
+      });
+      window.setTimeout(function() {
+        $('#chorescontent').toggle('slide', {
+          direction: 'right'
+        });
+      }, 600);
+    });
+  });
+
+  $(function() {
+    $('.ui.accordion').accordion();
+  });
+
+  $(function () {
+    $('#turnaroundchart').highcharts({
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie',
+        margin: [0, 0, 0, 0],
+        spacingTop: 0,
+        spacingBottom: 0,
+        spacingLeft: 0,
+        spacingRight: 0,
+        width: 300,
+        height: 280
+      },
+      title: {
+        text: ''
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          center: ['50%', '50%'],
+          size: '80%',
+          dataLabels: {
+            enabled: true,
+            format: '<b>{point.percentage:.1f} %',
+            distance: -30,
+            style: {
+              color: 'white',
+              textShadow: '',
+              fontweight: 'bold'
+            }
+          }
+        }
+      },
+      series: [{
+        name: "% of bugs",
+        colorByPoint: true,
+        data: [{
+          name: "In SLA",
+          color: '#21ba45',
+          y: 70
+        }, {
+          name: "Out of SLA",
+          color: '#f26202',
+          y: 20
+        }, {
+          name: "Red SLA",
+          color: '#db2828',
+          y: 10
+        }]
+      }]
+    });
+  });
+

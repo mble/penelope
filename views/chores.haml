@@ -1,0 +1,25 @@
+.ui.main.topspacer.container
+
+.ui.main.three.column.stackable.grid.container
+  - (1..6).each do
+    - opened_at = (Date.today-rand(150)).strftime '%e %b %Y'
+    - issue_number = "##{rand(1..9999)}"
+    - placeholder = 'PGTK'[rand(4), 1] + 'AEIOU'[rand(5), 1]
+    .column
+      .ui.fluid.card
+        .content
+          .meta
+            %a.ui.ribbon.horizontal.label
+              = opened_at
+            %a.ui.blue.horizontal.number.label{ href: '#' }
+              %b
+                = issue_number
+        .content
+          %b Bacon ipsum dolor amet pork belly pork pork loin, short ribs frankfurter jerky beef swine
+        .extra.content.labels
+          %a.ui.blue.label
+            Chore
+          %a.ui.yellow.label
+            = placeholder
+          %a.ui.green.label
+            +R Accepted

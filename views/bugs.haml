@@ -1,0 +1,194 @@
+.ui.main.topspacer.container
+#stats.ui.main.container.hidden
+  .ui.main.three.column.stackable.grid.container
+    .row.three.column
+      .column
+        .ui.segment.stats.turnaround
+          %a.ui.ribbon.label Turnaround
+          #turnaroundchart
+      .column
+        .ui.container.segment.clearing.stats.sla
+          %a.ui.ribbon.label SLA Position
+          .ui.three.column.grid.container
+            .row
+              .column.centered
+                .ui.container
+                  .greencircle
+                    In SLA
+                    %br
+                    6
+            .row
+              .column.centered
+                .ui.container
+                  .ambercircle
+                    Out SLA
+                    %br
+                    3
+            .row
+              .column.centered
+                .ui.container
+                  .redcircle
+                    Red Out
+                    %br
+                    0
+      .column
+        - github_search = "https://github.com/#{ENV['REPO']}/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+-label%3A%22QA+Accepted%22+-label%3A%22Platform%22"
+        .ui.segment.stats.issues
+          %a.ui.ribbon.label Issues Count
+          .ui.middle.aligned.list.selection
+            %a.item{href: "#{github_search}" + "#{URI.escape '+label:"Priority 1"'}" }
+              .ui.label.horizontal
+                0
+              Priority 1
+            %a.item{href: "#{github_search}" + "#{URI.escape '+label:"Priority 2"'}" }
+              .ui.label.horizontal
+                2
+              Priority 2
+            %a.item{href: "#{github_search}" + "#{URI.escape '+label:"Priority 3"'}" }
+              .ui.label.horizontal
+                14
+              Priority 3
+            %a.item{href: "#{github_search}" + "#{URI.escape '+label:"Priority 4"'}" }
+              .ui.label.horizontal
+                9
+              Priority 4
+            %a.item{href: "#{github_search}" + "#{URI.escape '+label:"Priority 5"'}" }
+              .ui.label.horizontal
+                4
+              Priority 5
+            %a.item{href: "#{github_search}" + "#{URI.escape '+label:"Priority 6"'}" }
+              .ui.label.horizontal
+                4
+              Priority 6
+            %a.item{href: "#{github_search}" + "#{URI.escape '+label:"Priority 7"'}" }
+              .ui.label.horizontal
+                8
+              Priority 7
+
+.ui.main.interspacer.container
+
+.ui.main.three.column.stackable.grid.container.issues.collection
+  .column
+    .ui.fluid.card
+      .content
+        .meta
+          %a.ui.green.ribbon.horizontal.label
+            = "#{rand(1..10)} days left"
+          %a.ui.blue.horizontal.number.label{ href: '#' }
+            %b
+              = "##{rand(1..9999)}"
+      .content
+        %b Bacon ipsum dolor amet pork belly pork pork loin, short ribs frankfurter jerky beef swine
+      .extra.content.labels
+        %a.ui.red.label
+          Priority 2
+        %a.ui.yellow.label
+          = 'PGTK'[rand(4), 1] + 'AEIOU'[rand(5), 1]
+        %a.ui.green.label
+          +R Accepted
+
+  .column
+    .ui.fluid.card
+      .content
+        .meta
+          %a.ui.red.horizontal.ribbon.label
+            = "#{rand(1..10)} days over"
+            %a.ui.blue.horizontal.number.label{ href: '#' }
+              %b
+                = "##{rand(1..9999)}"
+      .content
+        %b Tenderloin ham pork pork chop beef ribs
+      .extra.content.labels
+        %a.ui.red.label
+          Priority 2
+        %a.ui.yellow.label
+          = 'PGTK'[rand(4), 1] + 'AEIOU'[rand(5), 1]
+        %a.ui.purple.label
+          Integration
+        %a.ui.label
+          Component
+
+  .column
+    .ui.fluid.card
+      .content
+        .meta
+          %a.ui.horizontal.ribbon.label
+            N/A
+            %a.ui.blue.horizontal.number.label{ href: '#' }
+              %b
+                = "##{rand(1..9999)}"
+      .content
+        %b Salami andouille
+      .extra.content.labels
+        %a.ui.orange.horizontal.label
+          QA In Progress
+        %a.ui.green.horizontal.label
+          +R Accepted
+        %a.ui.teal.horizontal.label
+          Alpha
+        %a.ui.blue.horizontal.label
+          Roadmap
+        %a.ui.horizontal.label
+          Component 2
+        %a.ui.horizontal.label
+          Component 3
+        %a.ui.horizontal.label
+          Component 4
+
+  .column
+    .ui.fluid.card
+      .content
+        .meta
+          %a.ui.green.horizontal.ribbon.label
+            = "#{rand(1..10)} days left"
+            %a.ui.horizontal.number.label{ href: '#' }
+              %b
+                = "##{rand(1..9999)}"
+      .content
+        %b Cow porchetta jowl kielbasa tongue pork belly boudin sirloin short loin jerky fatback
+      .extra.content.labels
+        %a.ui.red.label
+          Priority 3
+        %a.ui.yellow.label
+          = 'PGTK'[rand(4), 1] + 'AEIOU'[rand(5), 1]
+        %a.ui.green.label
+          +R Accepted
+
+  .column
+    .ui.fluid.card
+      .content
+        .meta
+          %a.ui.horizontal.ribbon.label
+            = "#{rand(1..10)} days left"
+            %a.ui.horizontal.number.label{ href: '#' }
+              %b
+                = "##{rand(1..9999)}"
+      .content
+        %b Rump ribeye frankfurter bresaola, hamburger pancetta shoulder beef filet mignon
+      .extra.content.labels
+        %a.ui.red.label
+          Priority 2
+        %a.ui.yellow.label
+          = 'PGTK'[rand(4), 1] + 'AEIOU'[rand(5), 1]
+        %a.ui.green.label
+          +R Accepted
+
+  .column
+    .ui.fluid.card
+      .content
+        .meta
+          %a.ui.horizontal.ribbon.label
+            = "#{rand(1..10)} days left"
+            %a.ui.horizontal.number.label{ href: '#' }
+              %b
+                = "##{rand(1..9999)}"
+      .content
+        %b Sirloin jerky kevin prosciutto corned beef chicken pork belly picanha turkey beef ribs pastrami tenderloin drumstick
+      .extra.content.labels
+        %a.ui.red.label
+          Priority 1
+        %a.ui.yellow.label
+          = 'PGTK'[rand(4), 1] + 'AEIOU'[rand(5), 1]
+        %a.ui.green.label
+          +R Accepted
+
